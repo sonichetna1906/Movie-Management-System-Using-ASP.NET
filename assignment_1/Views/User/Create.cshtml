@@ -1,0 +1,58 @@
+﻿@model assignment_1.Models.User
+
+<h2>Register User</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    <div>
+        @Html.LabelFor(model => model.User_Name)
+        <br />
+        @Html.TextBoxFor(model => model.User_Name)
+        @Html.ValidationMessageFor(model => model.User_Name)
+    </div>
+
+    <br />
+
+    <div>
+        @Html.LabelFor(model => model.Email_ID)
+        <br />
+        @Html.TextBoxFor(model => model.Email_ID)
+        @Html.ValidationMessageFor(model => model.Email_ID)
+    </div>
+
+    <br />
+
+    <div>
+        @Html.LabelFor(model => model.User_password)
+        <br />
+        @Html.PasswordFor(model => model.User_password)
+        @Html.ValidationMessageFor(model => model.User_password)
+    </div>
+
+    <br />
+
+    <div>
+        @Html.LabelFor(model => model.City)
+        <br />
+        @Html.TextBoxFor(model => model.City)
+    </div>
+
+    <br />
+
+    <div>
+        @Html.LabelFor(model => model.PhoneNo)
+        <br />
+        @Html.TextBoxFor(model => model.PhoneNo)
+    </div>
+
+    <br />
+
+    <input type="submit" value="Register" />
+
+    <br />
+    <br />
+
+    @Html.ActionLink("Already have an account? Login", "Login")
+}

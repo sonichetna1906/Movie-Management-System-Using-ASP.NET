@@ -1,0 +1,33 @@
+﻿@model IEnumerable<assignment_1.Models.MovieCategory>
+
+<h2>Movie Categories</h2>
+
+<p>
+    @Html.ActionLink("Add New Category", "Create")
+</p>
+
+<table class="table table-bordered">
+
+    <tr>
+        <th>Category ID</th>
+        <th>Category Type</th>
+        <th>Action</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Cat_ID</td>
+            <td>@item.Cat_Type</td>
+
+            <td>
+                @Html.ActionLink("Edit", "Edit",
+                    new { id = item.Cat_ID })
+                |
+                @Html.ActionLink("Delete", "Delete",
+                    new { id = item.Cat_ID })
+            </td>
+        </tr>
+    }
+
+</table>

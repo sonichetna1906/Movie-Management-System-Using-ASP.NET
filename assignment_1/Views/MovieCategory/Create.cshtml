@@ -1,0 +1,22 @@
+﻿@model assignment_1.Models.MovieCategory
+
+<h2>Add Movie Category</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    <div>
+        @Html.LabelFor(model => model.Cat_Type)
+
+        @Html.TextBoxFor(model => model.Cat_Type)
+
+        @Html.ValidationMessageFor(model => model.Cat_Type)
+    </div>
+
+    <br />
+
+    <input type="submit" value="Save" />
+
+    @Html.ActionLink("Back", "Index")
+}

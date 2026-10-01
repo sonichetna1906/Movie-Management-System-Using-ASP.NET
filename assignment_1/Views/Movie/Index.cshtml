@@ -1,0 +1,39 @@
+﻿@model IEnumerable<assignment_1.Models.Movie>
+
+<h2>Movies</h2>
+
+<p>
+    @Html.ActionLink("Add New Movie", "Create")
+</p>
+
+<table class="table table-bordered">
+
+    <tr>
+        <th>Movie ID</th>
+        <th>Movie Name</th>
+        <th>Release Date</th>
+        <th>Category</th>
+        <th>Rate</th>
+        <th>Action</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Movie_ID</td>
+            <td>@item.Movie_name</td>
+            <td>@item.Release_Date.ToString("dd/MM/yyyy")</td>
+            <td>@item.Cat_Type</td>
+            <td>@item.rate</td>
+
+            <td>
+                @Html.ActionLink("Edit", "Edit",
+                    new { id = item.Movie_ID })
+                |
+                @Html.ActionLink("Delete", "Delete",
+                    new { id = item.Movie_ID })
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,60 @@
+﻿@model IEnumerable<assignment_1.Models.Movie>
+
+<h2>Search Movie by Category</h2>
+
+<form method="get" action="@Url.Action("Search", "Movie")">
+
+    <label>Select Category</label>
+    <br />
+
+    <select name="catId">
+        <option value="">-- Select Category --</option>
+
+        @foreach (var category in ViewBag.Categories)
+        {
+            <option value="@category.Cat_ID">
+                @category.Cat_Type
+            </option>
+        }
+    </select>
+
+    <br />
+    <br />
+
+    <input type="submit" value="Search" />
+
+</form>
+
+<br />
+
+@if (Model != null && Model.Any())
+{
+    <h3>Search Results</h3>
+
+    <table border="1" cellpadding="8">
+
+        <tr>
+            <th>Movie ID</th>
+            <th>Movie Name</th>
+            <th>Release Date</th>
+            <th>Category</th>
+            <th>Rate</th>
+        </tr>
+
+        @foreach (var movie in Model)
+        {
+            <tr>
+                <td>@movie.Movie_ID</td>
+                <td>@movie.Movie_name</td>
+                <td>@movie.Release_Date.ToShortDateString()</td>
+                <td>@movie.Cat_Type</td>
+                <td>@movie.rate</td>
+            </tr>
+        }
+
+    </table>
+}
+else
+{
+    <p>No movies found for this category.</p>
+}

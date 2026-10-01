@@ -1,0 +1,24 @@
+﻿@model assignment_1.Models.MovieCategory
+
+<h2>Edit Movie Category</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.Cat_ID)
+
+    @Html.ValidationSummary(true)
+
+    <div>
+        @Html.LabelFor(model => model.Cat_Type)
+
+        @Html.TextBoxFor(model => model.Cat_Type)
+
+        @Html.ValidationMessageFor(model => model.Cat_Type)
+    </div>
+
+    <br />
+
+    <input type="submit" value="Update" />
+
+    @Html.ActionLink("Back", "Index")
+}

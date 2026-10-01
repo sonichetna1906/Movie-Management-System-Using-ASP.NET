@@ -1,0 +1,34 @@
+﻿<h2>User Login</h2>
+
+@using (Html.BeginForm())
+{
+    <div>
+        <label>Email</label>
+        <br />
+        <input type="text" name="Email_ID" />
+    </div>
+
+    <br />
+
+    <div>
+        <label>Password</label>
+        <br />
+        <input type="password" name="User_password" />
+    </div>
+
+    <br />
+
+    <input type="submit" value="Login" />
+
+    <br />
+    <br />
+
+    @Html.ActionLink("Create New Account", "Create")
+}
+
+@if (ViewBag.Message != null)
+{
+    <p style="color:red">
+        @ViewBag.Message
+    </p>
+}

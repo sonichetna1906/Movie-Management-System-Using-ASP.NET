@@ -1,0 +1,91 @@
+﻿@model assignment_1.Models.Booking
+
+<h2>Book Movie Tickets</h2>
+
+<form method="post" action="@Url.Action("Create", "Booking")">
+
+    @Html.ValidationSummary(true)
+
+    <div>
+        <label>Category</label>
+        <br />
+
+        @Html.DropDownListFor(
+            model => model.Cat_ID,
+            (IEnumerable<System.Web.Mvc.SelectListItem>)ViewBag.Categories,
+            "-- Select Category --",
+            new { id = "CategoryDropdown" }
+        )
+    </div>
+
+    <br />
+
+    <div>
+        <label>Movie</label>
+        <br />
+
+        @Html.DropDownListFor(
+            model => model.Movie_ID,
+            (IEnumerable<System.Web.Mvc.SelectListItem>)ViewBag.Movies,
+            "-- Select Movie --",
+            new { id = "MovieDropdown" }
+        )
+    </div>
+
+    <br />
+
+    <div>
+        <label>Number of Tickets</label>
+        <br />
+
+        @Html.TextBoxFor(model => model.no_of_Tickets)
+    </div>
+
+    <br />
+
+    <input type="submit" value="Book Tickets" />
+
+</form>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $("#CategoryDropdown").change(function () {
+
+        var categoryId = $(this).val();
+
+        // Remove old movies
+        $("#MovieDropdown").empty();
+
+        // Add default option
+        $("#MovieDropdown").append(
+            '<option value="">-- Select Movie --</option>'
+        );
+
+        // If category is selected
+        if (categoryId != "") {
+
+            $.ajax({
+                url: '@Url.Action("GetMoviesByCategory", "Booking")',
+                type: "GET",
+                data: { catId: categoryId },
+
+                success: function (movies) {
+
+                    $.each(movies, function (i, movie) {
+
+                        $("#MovieDropdown").append(
+                            '<option value="' + movie.Value + '">' +
+                            movie.Text +
+                            '</option>'
+                        );
+
+                    });
+
+                }
+            });
+
+        }
+    });
+</script>

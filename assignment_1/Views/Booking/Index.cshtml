@@ -1,0 +1,55 @@
+﻿@model IEnumerable<assignment_1.Models.Booking>
+
+<h2>My Bookings</h2>
+
+<p>
+    @Html.ActionLink("Book New Movie", "Create")
+</p>
+
+<table border="1" cellpadding="8">
+
+    <tr>
+        <th>Booking ID</th>
+        <th>Category ID</th>
+        <th>Movie ID</th>
+        <th>Tickets</th>
+        <th>Amount</th>
+        <th>Action</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.booking_ID
+            </td>
+
+            <td>
+                @item.Cat_ID
+            </td>
+
+            <td>
+                @item.Movie_ID
+            </td>
+
+            <td>
+                @item.no_of_Tickets
+            </td>
+
+            <td>
+                @item.amount
+            </td>
+
+            <td>
+                @Html.ActionLink("Edit", "Edit",
+                    new { id = item.booking_ID })
+
+                |
+
+                @Html.ActionLink("Delete", "Delete",
+                    new { id = item.booking_ID })
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,79 @@
+﻿@model assignment_1.Models.Movie
+
+<h2>Edit Movie</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.Movie_ID)
+
+    @Html.ValidationSummary(true)
+
+    <div>
+        @Html.LabelFor(model => model.Movie_name)
+
+        @Html.TextBoxFor(
+            model => model.Movie_name
+        )
+
+        @Html.ValidationMessageFor(
+            model => model.Movie_name
+        )
+    </div>
+
+    <br />
+
+    <div>
+        @Html.LabelFor(model => model.Release_Date)
+
+        @Html.TextBoxFor(
+            model => model.Release_Date,
+            "{0:yyyy-MM-dd}",
+            new { type = "date" }
+        )
+
+        @Html.ValidationMessageFor(
+            model => model.Release_Date
+        )
+    </div>
+
+    <br />
+
+    <div>
+        @Html.LabelFor(model => model.Cat_ID)
+
+        @Html.DropDownListFor(
+            model => model.Cat_ID,
+            new SelectList(
+                ViewBag.Categories,
+                "Cat_ID",
+                "Cat_Type",
+                Model.Cat_ID
+            ),
+            "-- Select Category --"
+        )
+
+        @Html.ValidationMessageFor(
+            model => model.Cat_ID
+        )
+    </div>
+
+    <br />
+
+    <div>
+        @Html.LabelFor(model => model.rate)
+
+        @Html.TextBoxFor(
+            model => model.rate
+        )
+
+        @Html.ValidationMessageFor(
+            model => model.rate
+        )
+    </div>
+
+    <br />
+
+    <input type="submit" value="Update" />
+
+    @Html.ActionLink("Back", "Index")
+}
